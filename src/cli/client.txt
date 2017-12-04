@@ -1,0 +1,20 @@
+a chaque envoi sur serveur on doit regrouper les nom de fichiers identiques et leur donner un tab avec tout les adrs des clients (ip et pass)
+
+nom_fichier.extension_fichier:taille_fichier_octet
+
+menu 
+	sercher <patern>
+	get <num>
+	list
+	local list
+	quit
+
+
+theadsender pour diff morceaux avec datagram socket
+datagrampaqut(limitée obligatoirement) : num+data
+cree threadreciver pour reception avec datagram socket
+
+si gros fichier on divise ses octets par le nombre de clients qui le possèdent
+le client 1 prend
+
+
