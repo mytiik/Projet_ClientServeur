@@ -20,4 +20,8 @@
     client demande à chaque client de la liste de lui envoyer une partie précise du fichier
     
     - on analise pas le contenu (pas grave si meme nom et taille mais pas même contenu)
+
+
+
+MODIF
     
