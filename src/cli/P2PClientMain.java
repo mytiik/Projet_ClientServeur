@@ -23,7 +23,7 @@ public class P2PClientMain {
         BufferedReader brCLAV = new BufferedReader(new InputStreamReader(System.in));
         int nbForme = 0;
 
-        if (args.length != 2) {
+        if (args.length != 3) {
             System.out.println("Nombre d'arguments incorrect !");
             System.exit(1);
         }
@@ -34,6 +34,35 @@ public class P2PClientMain {
         } catch (NumberFormatException e) {
             System.out.println("Numéro de port non valide !");
             System.exit(1);
+        }
+         if ( portServ < 1024 || portServ > 65535 ){
+            System.out.println("Numéro de port non autorisé ou non valide !");
+            System.exit(1);
+        }
+
+        try {
+            System.out.println("création socket");
+            //Creates a stream socket and connects it to the specified port number
+            //at the specified IP address.
+            sockComm = new Socket();
+            sockComm.connect(new InetSocketAddress(ipServ, portServ));
+            System.out.println("connection");
+
+
+            outs = sockComm.getOutputStream();
+            ins = sockComm.getInputStream();
+
+            oos = new ObjectOutputStream(new BufferedOutputStream(outs));
+            oos.flush();
+            ois = new ObjectInputStream(new BufferedInputStream(ins));
+            File rep = new File(args[2]);
+            ListFilesClient lfc = new ListFilesClient();
+            System.out.println("Liste des fichiers du repertoire");
+            lfc.listerRepertoire(rep);
+    }
+         catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.toString());
         }
     }
 }
