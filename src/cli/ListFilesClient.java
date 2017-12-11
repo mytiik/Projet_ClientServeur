@@ -18,23 +18,31 @@ import java.text.SimpleDateFormat;
 public class ListFilesClient {
 
 
-private ArrayList<comServCli.P2PFile> listFile;
+public ArrayList<comServCli.P2PFile> listFile;
 
     public ListFilesClient(String rep) {
+        listFile= new ArrayList<>();
         File repertoire = new File(rep);
         File[] list = repertoire.listFiles();
         Arrays.sort(list);
         int count =0;
         for ( File f : list )
         {          
-            count++;
+           
             String name = f.getName();
-            long lastmod = f.lastModified();
-            SimpleDateFormat simple = new SimpleDateFormat("dd-MMM-yyyy HH:mm");
-            String formatted = simple.format(new Date(lastmod));
+            
             long length = f.length();
-            System.out.println(count+" - "+name+ " "+length+"Mo "+formatted);
+            listFile.add(new comServCli.P2PFile(name,length));
+            
+            
+           
          }
+        
+        for(comServCli.P2PFile p : listFile){
+            count ++;
+        System.out.println(count+" - "+p.getName()+" " +p.getSize()+"Mo");
+        }
+        
     }
 
     

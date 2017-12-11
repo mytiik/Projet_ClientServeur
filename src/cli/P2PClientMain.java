@@ -2,6 +2,7 @@ package cli;
 
 import java.net.*; 
 import java.io.*;
+import java.util.Objects;
 public class P2PClientMain {
     
  
@@ -56,8 +57,42 @@ public class P2PClientMain {
             oos.flush();
             ois = new ObjectInputStream(new BufferedInputStream(ins));
             String rep = new String(args[2]);
-            ListFilesClient lfc = new ListFilesClient(rep);
             System.out.println("Liste des fichiers du repertoire");
+            ListFilesClient lfc = new ListFilesClient(rep);
+            
+            String[] tblDbl;
+
+            while ((tblDbl = lectPourEcrir(brCLAV)) != null) {
+
+                if (tblDbl.length == 1) {
+
+                    Rond rond = new Rond(tblDbl[0]);
+
+                    System.out.println("écriture d'un rond dans le tableau");
+                    oos.writeObject(rond);
+                    oos.flush();
+
+                    System.out.println("calcul du perimetre et de l'aire du rond");
+
+                } else if (tblDbl.length == 2) {
+
+                    Rectangle rectangle = new Rectangle(tblDbl[0], tblDbl[1]);
+
+                    System.out.println("insertion de l'objet rectengle dans le tableau");
+                    oos.writeObject(rectangle);
+                    oos.flush();
+
+                    System.out.println("récuperation du perimetre et de l'aire du rectangle");
+                }
+
+                double peri = ois.readDouble();
+                double aire = ois.readDouble();
+
+                System.out.println("périmetre : " + peri);
+                System.out.println("aire : " + aire);
+
+            }
+            
             
     }
          catch (IOException e) {
@@ -66,7 +101,32 @@ public class P2PClientMain {
         }
         
     }
-}
+   private static String[] lectPourEcrir(BufferedReader brCLAV) throws IOException {
+        System.out.println("saisir une requete (Search, get, list ou quit): ");
+        String[] req =  brCLAV.readLine().split(",");
+
+        if (req.length == 1 && Objects.equals(req[0], "")){
+            return null;
+        }
+
+
+        if (req.length == 2){
+
+            String[] tblDbl = new String[req.length];
+            for (int i = 0; i < req.length; i++) {
+                
+            }
+            return tblDbl;
+
+        }else if(req.length == 1){
+            String[] rondRayon = new String[req.length];
+           
+            }
+            return req;
+        }
+
+    }
+
 /*
     
     
