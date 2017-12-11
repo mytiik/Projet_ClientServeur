@@ -55,15 +55,16 @@ public class P2PClientMain {
             oos = new ObjectOutputStream(new BufferedOutputStream(outs));
             oos.flush();
             ois = new ObjectInputStream(new BufferedInputStream(ins));
-            File rep = new File(args[2]);
-            ListFilesClient lfc = new ListFilesClient();
+            String rep = new String(args[2]);
+            ListFilesClient lfc = new ListFilesClient(rep);
             System.out.println("Liste des fichiers du repertoire");
-            lfc.listerRepertoire(rep);
+            
     }
          catch (IOException e) {
             e.printStackTrace();
             System.out.println(e.toString());
         }
+        
     }
 }
 /*
