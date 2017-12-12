@@ -31,8 +31,8 @@ public ArrayList<comServCli.P2PFile> listFile;
            
             String name = f.getName();
             
-            long length = f.length();
-            listFile.add(new comServCli.P2PFile(name,length));
+            long size = f.length();
+            listFile.add(new comServCli.P2PFile(name,size));
             
             
            
@@ -47,7 +47,9 @@ public ArrayList<comServCli.P2PFile> listFile;
 
     
         
-    
+public ArrayList<comServCli.P2PFile> EnvoiListFile(){
+return listFile;
+}
 }
     
 

@@ -8,7 +8,7 @@ import java.util.Objects;
 public class P2PFile implements Serializable {
     
     private String          name;
-    private long             size;
+    private long            size;
     private ArrayList<String> listeIpClient;
     
     // default constructor

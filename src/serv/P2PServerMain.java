@@ -11,17 +11,17 @@ public class P2PServerMain {
 
         ServerSocket servSock = null;
         Socket sockComm = null;
-
+        
         ThreadServer t;
 
-        int portServ = 0;
+        int portServ = 1234;
 
-        if (args.length != 1 ) {
+       /* if (args.length != 1 ) {
             System.out.println("Nombre d'arguments incorrect !");
             System.exit(1);
         }
         try {
-            portServ = Integer.parseInt(args[0]);
+            portServ = Integer.parseInt(args[0]);//susceptible de lever NumberFormatException
         } catch (NumberFormatException e) {
             System.out.println("Numéro de port ou argument non valide !");
             System.exit(1);
@@ -29,14 +29,11 @@ public class P2PServerMain {
         if ( portServ < 1024 || portServ > 65535 ){
             System.out.println("Numéro de port non autorisé ou non valide !");
             System.exit(1);
-        }
+        }*/
 
 
         try {
-            
-            ListFilesServer ListeServer = new ListFilesServer();
-            
-            servSock = new ServerSocket(portServ);
+            servSock = new ServerSocket(portServ); //on creer une nouvelle socket pour le transfert du fichier
             while (true) {
                 sockComm = servSock.accept();
                 t = new ThreadServer(sockComm);

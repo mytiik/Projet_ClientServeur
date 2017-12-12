@@ -59,27 +59,30 @@ public class P2PClientMain {
             String rep = new String(args[2]);
             System.out.println("Liste des fichiers du repertoire");
             ListFilesClient lfc = new ListFilesClient(rep);
+            oos.writeObject(lfc.EnvoiListFile());
+            oos.flush();
+            System.out.println("Veuillez saisir une requête pour intéragir avec les fichiers");
             
-            String[] tblDbl;
+          /*  String[] tblDbl;
 
             while ((tblDbl = lectPourEcrir(brCLAV)) != null) {
 
                 if (tblDbl.length == 1) {
 
-                    Rond rond = new Rond(tblDbl[0]);
+                   // Rond rond = new Rond(tblDbl[0]);
 
                     System.out.println("écriture d'un rond dans le tableau");
-                    oos.writeObject(rond);
+                    //oos.writeObject(rond);
                     oos.flush();
 
                     System.out.println("calcul du perimetre et de l'aire du rond");
 
                 } else if (tblDbl.length == 2) {
 
-                    Rectangle rectangle = new Rectangle(tblDbl[0], tblDbl[1]);
+                 //   Rectangle rectangle = new Rectangle(tblDbl[0], tblDbl[1]);
 
                     System.out.println("insertion de l'objet rectengle dans le tableau");
-                    oos.writeObject(rectangle);
+                 //   oos.writeObject(rectangle);
                     oos.flush();
 
                     System.out.println("récuperation du perimetre et de l'aire du rectangle");
@@ -89,12 +92,12 @@ public class P2PClientMain {
                 double aire = ois.readDouble();
 
                 System.out.println("périmetre : " + peri);
-                System.out.println("aire : " + aire);
+                System.out.println("aire : " + aire);*/
 
             }
             
             
-    }
+    
          catch (IOException e) {
             e.printStackTrace();
             System.out.println(e.toString());

@@ -6,18 +6,18 @@ import java.util.ArrayList;
 
 public class ListFilesServer {
     
-    private ArrayList<P2PFile> listeServeur;
+    private ArrayList<comServCli.P2PFile> listeServeur;
     
     public ListFilesServer (){
-        this.listeServeur = new ArrayList<P2PFile>();
+        this.listeServeur = new ArrayList<comServCli.P2PFile>();
     }
     
     public void listerFichiersServeur() {
         listeServeur.toString();
     }
     
-    public void AjoutListe (String[] listeClient, String ipClient){
-        for ( int i = 0; i < listeClient.length; i++ ) {
+    public void AjoutListe (ArrayList<comServCli.P2PFile> listeClient, String ipClient){
+        for ( int i = 0; i < listeClient.size(); i++ ) {
             
             // on créer un fichier et on extrait sa taille
             int size = (int) ( new File(listeClient[i]) ).getTotalSpace();

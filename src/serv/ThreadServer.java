@@ -1,9 +1,20 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package serv;
 
 import java.io.*;
 import java.net.*;
+import java.util.Objects;
+import java.util.ArrayList;
 
+/**
+ *
+ * @author geofc
+ *
+ */
 public class ThreadServer extends Thread {
     private Socket sockComm = null;
 //    private ObjetPartage objShared;
@@ -24,26 +35,30 @@ public class ThreadServer extends Thread {
         ObjectOutputStream oos = null;
         try{
             System.out.println("Debut de connection. \nIP : " + sockComm.getInetAddress() +  " | Numero de port :" + sockComm.getPort());
-            
+
+            ins = sockComm.getInputStream();
+            outs = sockComm.getOutputStream();
+
             oos = new ObjectOutputStream(new BufferedOutputStream(outs));
             oos.flush();
             ois = new ObjectInputStream(new BufferedInputStream(ins));
 
-            while (true){
+              System.out.println();
                 
-                // récupère ipClient
-                String ipClient = (String) ois.readObject();
+                System.out.println("Reception de la liste de fichiers");
                 
-                // récupère la liste de fichiers
-                String[] listeClient = (String[]) ois.readObject();
+                ArrayList<comServCli.P2PFile> listFile = (ArrayList<comServCli.P2PFile>)ois.readObject();
+              
+                System.out.println(listFile.get(0).getName());
                 
-                ListeServer.AjoutListe( listeClient, ipClient);
-                System.out.println("Liste de fichiers : ");
-                l.listerRepertoire();
 
-                System.out.println("Envoi");
-                oos.write();
-                oos.flush();
+            while (true){
+              
+                
+
+               
+
+                
             }
         }catch (EOFException | SocketException e){
             System.out.println();
@@ -76,5 +91,4 @@ public class ThreadServer extends Thread {
     }
 
     // ... autres méthodes
-}
 }
