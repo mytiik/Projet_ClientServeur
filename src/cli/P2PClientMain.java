@@ -61,8 +61,12 @@ public class P2PClientMain {
             ListFilesClient lfc = new ListFilesClient(rep);
             oos.writeObject(lfc.EnvoiListFile());
             oos.flush();
-            System.out.println("Veuillez saisir une requête pour intéragir avec les fichiers");
+            while (true){
+            System.out.println("saisir une requete (Search, get, list, local list ou quit): ");
+            String[] req =  brCLAV.readLine().split(" ");
             
+            oos.writeObject(req);
+            oos.flush();}
           /*  String[] tblDbl;
 
             while ((tblDbl = lectPourEcrir(brCLAV)) != null) {

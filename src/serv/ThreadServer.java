@@ -48,11 +48,18 @@ public class ThreadServer extends Thread {
                 System.out.println("Reception de la liste de fichiers");
                 
                 ArrayList<comServCli.P2PFile> listFile = (ArrayList<comServCli.P2PFile>)ois.readObject();
-              
-                System.out.println(listFile.get(0).getName());
+               for ( int i = 0; i < listFile.size(); i++ ) {
+                System.out.println("Fichier " + i +": "+ listFile.get(i).getName()+" "+ listFile.get(i).getSize()+" MO");
+               
+                }
                 
 
             while (true){
+                
+                System.out.println("Reception de la reqûete");
+                String req = (String)ois.readObject();
+                 System.out.println(req);
+                
               
                 
 
