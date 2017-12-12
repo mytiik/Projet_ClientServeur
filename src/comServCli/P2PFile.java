@@ -1,17 +1,18 @@
 
 package comServCli;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class P2PFile {
+public class P2PFile implements Serializable {
     
     private String          name;
-    private int             size;
+    private long             size;
     private ArrayList<String> listeIpClient;
     
     // default constructor
-    public P2PFile( String name, int size ){
+    public P2PFile( String name, long size ){
         this.name        = name;
         this.size        = size;
         this.listeIpClient = new ArrayList<String>();
@@ -38,7 +39,7 @@ public class P2PFile {
     public void     setName(String name) {
         this.name = name;
     }
-    public void     setSize(int size) {
+    public void     setSize(long size) {
         this.size = size;
     }
     public void     setListeIpClient(ArrayList<String> listeClient) {
@@ -49,7 +50,7 @@ public class P2PFile {
     public int      hashCode(){
         int hash = 14;
         hash = (31 * hash) + this.name.hashCode();
-        hash = (31 * hash) + this.size;
+     //   hash = (31 * hash) + this.size;
         return hash;
     }
 
