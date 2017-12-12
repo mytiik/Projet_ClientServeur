@@ -1,0 +1,4 @@
+pour les requete : 1 argument  = list / quit
+		 2 arguents search pattern etc
+
+Object equals.req == "list" 
