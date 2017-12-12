@@ -1,63 +1,60 @@
 
 package comServCli;
-import java.util.Arrays;
-import java.util.Objects;
 
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class P2PFile {
     
-    private String      name = "";
-    private int         size = 0;
-    private String[]    listeClient = null;
+    private String          name;
+    private int             size;
+    private ArrayList<String> listeIpClient;
     
     // default constructor
     public P2PFile( String name, int size ){
-        this.name = name;
-        this.size = size;
+        this.name        = name;
+        this.size        = size;
+        this.listeIpClient = new ArrayList<String>();
     }
-    // ^ (name only)
-    public P2PFile( String name ){
-        this.name = name;
+    // empty constructor
+    public P2PFile(){
+        this.name        = "[]";
+        this.size        = 0;
+        this.listeIpClient = new ArrayList<String>();
     }
 
     // getters
-    public String[] getListeClient() {
-        return listeClient;
-    }
-    public String   getName() {
+    public String           getName() {
         return name;
     }
-    public double   getSize() {
+    public double           getSize() {
         return size;
+    }
+    public ArrayList<String>  getListeIpClient() {
+        return listeIpClient;
     }
     
     // setters
-    public void     setListeClient(String[] listeClient) {
-        this.listeClient = listeClient;
-    }
     public void     setName(String name) {
         this.name = name;
     }
     public void     setSize(int size) {
         this.size = size;
     }
+    public void     setListeIpClient(ArrayList<String> listeClient) {
+        this.listeIpClient = listeClient;
+    }
     
     @Override
     public int      hashCode(){
-        int result = 14;
-        
-        result = 31 * result + this.name.hashCode();
-        result = 31 * result + this.size;
-        result = 31 * result + Arrays.hashCode(this.listeClient);
-        
-        return result;
+        int hash = 14;
+        hash = (31 * hash) + this.name.hashCode();
+        hash = (31 * hash) + this.size;
+        return hash;
     }
 
     @Override
     public boolean  equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }

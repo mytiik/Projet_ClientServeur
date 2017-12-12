@@ -1,19 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package serv;
 
 import java.io.*;
 import java.net.*;
 
-/**
- *
- * @author geofc
- *
-
- */
 public class ThreadServer extends Thread {
     private Socket sockComm = null;
 //    private ObjetPartage objShared;
@@ -34,41 +24,25 @@ public class ThreadServer extends Thread {
         ObjectOutputStream oos = null;
         try{
             System.out.println("Debut de connection. \nIP : " + sockComm.getInetAddress() +  " | Numero de port :" + sockComm.getPort());
-
-            ins = sockComm.getInputStream();
-            outs = sockComm.getOutputStream();
-
+            
             oos = new ObjectOutputStream(new BufferedOutputStream(outs));
             oos.flush();
             ois = new ObjectInputStream(new BufferedInputStream(ins));
 
-            double peri;
-            double aire;
-
             while (true){
-                System.out.println();
-                System.out.println("Attente de la forme");
-                Object o = ois.readObject();
-                System.out.println("Récepion de la forme");
-                peri = 0.0;
-                aire = 0.0;
-                Forme forme = (Forme) o;
+                
+                // récupère ipClient
+                String ipClient = (String) ois.readObject();
+                
+                // récupère la liste de fichiers
+                String[] listeClient = (String[]) ois.readObject();
+                
+                ListeServer.AjoutListe( listeClient, ipClient);
+                System.out.println("Liste de fichiers : ");
+                l.listerRepertoire();
 
-                System.out.println(o);
-                System.out.println("Perimetre : " + forme.perimetre());
-                System.out.println("Aire : " + forme.aire());
-
-                peri = forme.perimetre();
-                aire = forme.aire();
-
-                System.out.println("Envoi du perimetre");
-                oos.writeDouble(peri);
-
-                oos.flush();
-
-                System.out.println("Envoi de l'aire");
-                oos.writeDouble(aire);
-
+                System.out.println("Envoi");
+                oos.write();
                 oos.flush();
             }
         }catch (EOFException | SocketException e){

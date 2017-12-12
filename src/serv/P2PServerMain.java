@@ -21,7 +21,7 @@ public class P2PServerMain {
             System.exit(1);
         }
         try {
-            portServ = Integer.parseInt(args[0]);//susceptible de lever NumberFormatException
+            portServ = Integer.parseInt(args[0]);
         } catch (NumberFormatException e) {
             System.out.println("Numéro de port ou argument non valide !");
             System.exit(1);
@@ -33,7 +33,10 @@ public class P2PServerMain {
 
 
         try {
-            servSock = new ServerSocket(portServ); //on creer une nouvelle socket pour le transfert du fichier
+            
+            ListFilesServer ListeServer = new ListFilesServer();
+            
+            servSock = new ServerSocket(portServ);
             while (true) {
                 sockComm = servSock.accept();
                 t = new ThreadServer(sockComm);
